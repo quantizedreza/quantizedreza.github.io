@@ -18,7 +18,7 @@
 ## Special Topics
 
 
-## Computational Physics 
+# Computational Physics and Computational Materials Science
 
 ```python
 print("Hello World! My codes can be found in my github repositories")
