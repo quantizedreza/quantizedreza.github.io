@@ -16,4 +16,4 @@
 print("Hello World! My codes can be found in my github repositories")
 ```
 
-[My Github](./https://github.com/quantizedreza/).
+[My Github](../).
