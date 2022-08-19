@@ -16,3 +16,10 @@
 ## Quantum Hall Effect 
 
 ## Special Topics
+
+
+## Computational Physics 
+
+```python
+print("Hello World! My codes can be found in my github repositories)
+```
