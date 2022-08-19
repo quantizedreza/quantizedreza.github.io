@@ -1,7 +1,7 @@
 # Theoretical Materials Science
 
 - Temperature Dependent Elastic Modulus
- - My equation describes the change in elastic modulus vs the temperature. It can be accessed [here](https://www.sciencedirect.com/science/article/abs/pii/S135964621400493X).
+  - My equation describes the change in elastic modulus vs the temperature. It can be accessed [here](https://www.sciencedirect.com/science/article/abs/pii/S135964621400493X).
    
 - Mechanical Properties of Engineering Materials 
 
