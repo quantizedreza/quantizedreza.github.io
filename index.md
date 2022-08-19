@@ -21,5 +21,5 @@
 ## Computational Physics 
 
 ```python
-print("Hello World! My codes can be found in my github repositories)
+print("Hello World! My codes can be found in my github repositories")
 ```
