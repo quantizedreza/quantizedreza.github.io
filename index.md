@@ -23,4 +23,5 @@
 ```python
 print("Hello World! My codes can be found in my github repositories")
 ```
-My Github: ./quantizedreza.github.io
+
+[My Github](./quantizedreza.github.io).
