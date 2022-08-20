@@ -1,6 +1,6 @@
 # Theoretical Materials Science 
 
-- Temperature Dependent Elastic Modulus
+- My Temperature Dependent Elastic Modulus formalism.
   - My equation describes the change in elastic modulus vs the temperature. The paper can be accessed [here](https://www.sciencedirect.com/science/article/abs/pii/S135964621400493X). Experimental datasets and codes pertaining to this project can be found [here](https://github.com/quantizedreza/elastic-modulus-temperature).  
    
 - Mechanical Properties of Engineering Materials 
