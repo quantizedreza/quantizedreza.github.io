@@ -8,6 +8,8 @@
 # Quantum Field Theory in Condensed Matter Physics 
 
  - From Statistical Mechanics to Quantum Mechanics (and back)
+     - Positron work function based on my formalism. 
+
 
  - Second Quantization, Feynman Path Integral, Majorana Fermions, Quantum Hall Effect.
  
