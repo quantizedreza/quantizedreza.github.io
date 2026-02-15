@@ -6,13 +6,14 @@
   <title>Reza Rahemi – Physics & Computational Research</title>
   <meta name="description" content="Reza Rahemi – Physics researcher and computational scientist. University of California, San Diego."/>
   
-  <!-- Simple modern styling -->
+  <!-- Modern, clean styling with dark/light mode support -->
   <style>
     :root {
       --bg: #0d1117;
       --text: #e6edf3;
       --accent: #58a6ff;
       --card: #161b22;
+      --border: rgba(88,166,255,0.15);
     }
     @media (prefers-color-scheme: light) {
       :root {
@@ -20,6 +21,7 @@
         --text: #0d1117;
         --accent: #0969da;
         --card: #f6f8fa;
+        --border: rgba(9,105,218,0.15);
       }
     }
     * {
@@ -44,13 +46,8 @@
     }
     header {
       text-align: center;
-      padding: 4rem 1rem 3rem;
-      background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
-    }
-    @media (prefers-color-scheme: light) {
-      header {
-        background: linear-gradient(135deg, #f0f4f8 0%, #e6eff8 100%);
-      }
+      padding: 5rem 1rem 4rem;
+      background: linear-gradient(135deg, var(--card) 0%, var(--bg) 100%);
     }
     .avatar {
       width: 140px;
@@ -60,25 +57,26 @@
       margin-bottom: 1.5rem;
       object-fit: cover;
       background: #444;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
     h1 {
       font-size: 2.8rem;
       margin-bottom: 0.5rem;
     }
     .tagline {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       color: var(--accent);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
     .meta {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       opacity: 0.9;
       margin-bottom: 2rem;
     }
     .links {
       display: flex;
       justify-content: center;
-      gap: 1.8rem;
+      gap: 1.5rem;
       margin: 2rem 0 3rem;
       flex-wrap: wrap;
     }
@@ -90,11 +88,12 @@
       text-decoration: none;
       border-radius: 6px;
       font-weight: 500;
-      transition: all 0.2s;
+      transition: all 0.2s ease;
     }
     .btn:hover {
       background: #388bfd;
       transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(9,105,218,0.3);
     }
     .btn-outline {
       background: transparent;
@@ -106,22 +105,35 @@
       color: white;
     }
     section {
-      margin: 3rem 0;
+      margin: 3.5rem 0;
     }
     h2 {
-      font-size: 1.8rem;
+      font-size: 1.9rem;
       margin-bottom: 1.2rem;
       color: var(--accent);
-      border-bottom: 2px solid rgba(88,166,255,0.3);
-      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.6rem;
     }
     footer {
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 2.5rem 1rem;
       margin-top: auto;
-      border-top: 1px solid rgba(88,166,255,0.15);
+      border-top: 1px solid var(--border);
       font-size: 0.95rem;
-      opacity: 0.8;
+      opacity: 0.85;
+    }
+    ul.connect {
+      list-style: none;
+      padding-left: 0;
+    }
+    ul.connect li {
+      margin-bottom: 0.8rem;
+      font-size: 1.05rem;
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 2.4rem; }
+      .avatar { width: 120px; height: 120px; }
+      header { padding: 4rem 1rem 3rem; }
     }
   </style>
 </head>
@@ -129,19 +141,21 @@
 
   <header>
     <img 
-      src="https://github.com/quantizedreza/quantizedreza.github.io/blob/27a19e02d8a08751c2b43d7c37644c4570427412/page.jpg" 
-      alt="Reza Rahemi" 
+      src="https://raw.githubusercontent.com/quantizedreza/quantizedreza.github.io/27a19e02d8a08751c2b43d7c37644c4570427412/page.jpg" 
+      alt="Reza Rahemi profile photo" 
       class="avatar"
+      onerror="this.src='https://via.placeholder.com/140?text=Photo';"
     >
     <h1>Reza Rahemi</h1>
-    <div class="tagline">Physics • Computational Science</div>
+    <div class="tagline">Physics • Computational Science • Geophysics</div>
     <div class="meta">
-      University of California, San Diego
+      University of California, San Diego<br>
+      Scripps Institution of Oceanography
     </div>
 
     <div class="links">
-      <a href="https://sites.psu.edu/reza" class="btn" target="_blank" rel="noopener">Personal Site</a>
-      <a href="https://github.com/quantizedreza" class="btn btn-outline" target="_blank">GitHub Profile</a>
+      <a href="https://github.com/quantizedreza" class="btn" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+      <a href="https://sites.psu.edu/reza" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Penn State Archive</a>
     </div>
   </header>
 
@@ -150,35 +164,45 @@
     <section>
       <h2>About</h2>
       <p>
-        Physics researcher with interest in computational methods and scientific computing.<br>
-        Currently associated with UC San Diego.
+        Physics researcher focused on computational methods, scientific computing, condensed matter, and geophysics.<br>
+        Currently affiliated with UC San Diego (Scripps Institution of Oceanography).
       </p>
       <p>
-        This is my GitHub Pages site — more content, projects, publications and notes coming soon.
+        Interests include physics simulations, numerical methods, inverse problems, fault mechanics, and anthropogenic seismicity.
+      </p>
+      <p>
+        This is my GitHub Pages site — more projects, publications, Jupyter notebooks, and research notes will be added soon.
       </p>
     </section>
 
     <section>
-      <h2>Featured Repositories</h2>
+      <h2>Featured Work & Repositories</h2>
       <p>
-        Check out my <a href="https://github.com/quantizedreza?tab=repositories" style="color:var(--accent)">public repositories</a> for code related to physics simulations, numerical methods, and more.
+        Explore my <a href="https://github.com/quantizedreza?tab=repositories" style="color:var(--accent); text-decoration:underline;">public repositories</a> — Jupyter notebooks and code covering:
       </p>
-      <!-- You can later add cards / links to your pinned repos here -->
+      <ul style="padding-left:1.8rem; margin:1rem 0;">
+        <li>Computational Physics</li>
+        <li>Nuclear Physics with Python</li>
+        <li>Materials Physics with Python</li>
+        <li>Planetary Physics with Python</li>
+        <li>Discrete Inverse Theory</li>
+      </ul>
+      <p>More physics-based simulations and teaching materials coming soon.</p>
     </section>
 
     <section>
       <h2>Contact / Connect</h2>
-      <ul style="list-style:none; padding-left:0; line-height:2;">
-        <li>📧 → Reach out via GitHub issues or your preferred academic channel</li>
-        <li>🌐 → <a href="https://sites.psu.edu/reza" style="color:var(--accent)">https://sites.psu.edu/reza</a></li>
+      <ul class="connect">
+        <li>📧 → Best reached via GitHub issues or academic email (see publications)</li>
         <li>🐙 → <a href="https://github.com/quantizedreza" style="color:var(--accent)">github.com/quantizedreza</a></li>
+        <li>🌐 → Older site: <a href="https://sites.psu.edu/reza" style="color:var(--accent)">sites.psu.edu/reza</a> (Penn State era)</li>
       </ul>
     </section>
 
   </div>
 
   <footer>
-    &copy; <script>document.write(new Date().getFullYear());</script> Reza Rahemi • Hosted on GitHub Pages
+    © <script>document.write(new Date().getFullYear());</script> Reza Rahemi • Hosted on GitHub Pages
   </footer>
 
 </body>
