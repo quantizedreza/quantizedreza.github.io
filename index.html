@@ -1,232 +1,265 @@
 <!DOCTYPE html>
-  <body style="background-color: darkblue; color: white;">
-
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title> Reza Rahemi – Physics Of Complex Systems </title>
+  <title>Reza Rahemi – Physics Of Complex Systems</title>
   <meta name="description" content="Reza Rahemi – Physics Of Complex Systems - University of California, San Diego."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #0d1117;
-      --text: #e6edf3;
-      --accent: #58a6ff;
-      --card: #161b22;
-      --border: rgba(88,166,255,0.15);
+      --bg: #f3f6f8;
+      --surface: #ffffff;
+      --text: #0c2030;
+      --muted: #4d6475;
+      --accent: #0b6785;
+      --accent-ink: #ffffff;
+      --line: #d5e0e7;
+      --serif: "Newsreader", Georgia, "Times New Roman", serif;
+      --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     }
-    @media (prefers-color-scheme: light) {
+    @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #ffffff;
-        --text: #0d1117;
-        --accent: #0969da;
-        --card: #f6f8fa;
-        --border: rgba(9,105,218,0.15);
+        --bg: #08141d;
+        --surface: #0f1f2b;
+        --text: #e3edf3;
+        --muted: #93a9b8;
+        --accent: #62c4dd;
+        --accent-ink: #06202b;
+        --line: #1e3445;
       }
     }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: var(--sans);
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.65;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      -webkit-font-smoothing: antialiased;
     }
-    .container {
-      max-width: 900px;
+    a { color: var(--accent); text-underline-offset: 3px; }
+    a:focus-visible, .btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* Layout: identity column + content column */
+    .page {
+      width: 100%;
+      max-width: 1080px;
       margin: 0 auto;
-      padding: 2rem 1.5rem;
+      padding: 4rem 1.5rem 3rem;
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      gap: 4.5rem;
       flex: 1;
     }
-    header {
-      text-align: center;
-      padding: 5rem 1rem 4rem;
-      background: linear-gradient(135deg, var(--card) 0%, var(--bg) 100%);
+    aside {
+      position: sticky;
+      top: 3rem;
+      align-self: start;
     }
     .avatar {
-      width: 140px;
-      height: 140px;
+      width: 132px;
+      height: 132px;
       border-radius: 50%;
-      border: 4px solid var(--accent);
-      margin-bottom: 1.5rem;
       object-fit: cover;
-      background: #444;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      background: var(--line);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 0 4px var(--bg), 0 0 0 6px var(--accent);
     }
     h1 {
-      font-size: 2.8rem;
-      margin-bottom: 0.5rem;
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 2.7rem;
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      margin-bottom: 0.6rem;
     }
     .tagline {
-      font-size: 1.4rem;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.3rem;
       color: var(--accent);
+      line-height: 1.3;
       margin-bottom: 1rem;
     }
     .meta {
-      font-size: 1.15rem;
-      opacity: 0.9;
-      margin-bottom: 2rem;
-    }
-    .links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin: 2rem 0 3rem;
-      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.98rem;
+      margin-bottom: 1.6rem;
     }
     .btn {
       display: inline-block;
-      padding: 0.8rem 1.6rem;
+      padding: 0.65rem 1.3rem;
       background: var(--accent);
-      color: white;
+      color: var(--accent-ink);
       text-decoration: none;
-      border-radius: 6px;
-      font-weight: 500;
-      transition: all 0.2s ease;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: opacity 0.15s ease;
     }
-    .btn:hover {
-      background: #388bfd;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(9,105,218,0.3);
+    .btn:hover { opacity: 0.85; }
+    .logo { display: block; margin-top: 2.5rem; max-width: 100%; height: auto; }
+
+    /* Wave line: one-time draw on load */
+    .wave { display: block; width: 100%; height: 48px; margin: 0 0 2.5rem; color: var(--accent); }
+    .wave path {
+      fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;
+      stroke-dasharray: 1; stroke-dashoffset: 1;
+      animation: draw 2.2s ease-out 0.2s forwards;
     }
-    .btn-outline {
-      background: transparent;
-      border: 1px solid var(--accent);
-      color: var(--accent);
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .wave path { animation: none; stroke-dashoffset: 0; }
+      html { scroll-behavior: auto; }
     }
-    .btn-outline:hover {
-      background: var(--accent);
-      color: white;
-    }
-    section {
-      margin: 3.5rem 0;
-    }
+
+    /* Content */
+    section { margin-bottom: 3.5rem; max-width: 66ch; }
     h2 {
-      font-size: 1.9rem;
-      margin-bottom: 1.2rem;
-      color: var(--accent);
-      border-bottom: 2px solid var(--border);
-      padding-bottom: 0.6rem;
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 1.85rem;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
     }
+    section p { margin-bottom: 1rem; }
+    section p:last-child { margin-bottom: 0; }
+    ul.plain { padding-left: 1.3rem; margin: 0.5rem 0 1.5rem; }
+    ul.plain li { margin-bottom: 0.35rem; }
+
+    .feature {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      padding: 1.6rem 1.7rem;
+      margin: 1.5rem 0;
+    }
+    .feature h3 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 1.4rem;
+      line-height: 1.3;
+      margin-bottom: 0.8rem;
+    }
+    .feature .cite { font-weight: 500; margin-bottom: 1rem; }
+    .feature .desc { color: var(--muted); }
+    .feature ul { padding-left: 1.3rem; margin: 0.5rem 0 1.2rem; }
+    .feature li { margin-bottom: 0.3rem; }
+
+    ul.connect { list-style: none; }
+    ul.connect li {
+      display: flex;
+      gap: 0.9rem;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    ul.connect li:first-child { border-top: 1px solid var(--line); }
+
     footer {
       text-align: center;
-      padding: 2.5rem 1rem;
-      margin-top: auto;
-      border-top: 1px solid var(--border);
-      font-size: 0.95rem;
-      opacity: 0.85;
+      padding: 2rem 1rem;
+      border-top: 1px solid var(--line);
+      font-size: 0.92rem;
+      color: var(--muted);
     }
-    ul.connect {
-      list-style: none;
-      padding-left: 0;
-    }
-    ul.connect li {
-      margin-bottom: 0.8rem;
-      font-size: 1.05rem;
-    }
-    @media (max-width: 600px) {
-      h1 { font-size: 2.4rem; }
-      .avatar { width: 120px; height: 120px; }
-      header { padding: 4rem 1rem 3rem; }
+
+    @media (max-width: 860px) {
+      .page { grid-template-columns: 1fr; gap: 2.5rem; padding-top: 3rem; }
+      aside { position: static; }
+      h1 { font-size: 2.3rem; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <img 
-      src="https://raw.githubusercontent.com/quantizedreza/quantizedreza.github.io/refs/heads/main/page.jpg" 
-      alt="Reza Rahemi profile photo" 
-      class="avatar"
-    >
-    <h1>Reza Rahemi</h1>
-    <div class="tagline"> Physics Of Complex Systems </div>
-    <div class="meta">
-       University of California, San Diego<br>
-    </div>
-
-    <div class="links">
+  <div class="page">
+    <aside>
+      <img
+        src="https://raw.githubusercontent.com/quantizedreza/quantizedreza.github.io/refs/heads/main/page.jpg"
+        alt="Reza Rahemi profile photo"
+        class="avatar"
+      >
+      <h1>Reza Rahemi</h1>
+      <div class="tagline">Physics Of Complex Systems</div>
+      <div class="meta">University of California, San Diego</div>
       <a href="https://github.com/quantizedreza" class="btn" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
-    </div>
-  </header>
+      <img class="logo" width="270" height="75" alt="UCSD-SIO_Hrizontal-Color_RGB" src="https://github.com/user-attachments/assets/0943ed2e-dbb7-4365-9d86-80344aa0e6e0" />
+    </aside>
 
-  <div class="container">
+    <main>
+      <svg class="wave" viewBox="0 0 600 48" preserveAspectRatio="none" aria-hidden="true">
+        <path pathLength="1" d="M0 24 C 25 2, 50 2, 75 24 S 125 46, 150 24 S 200 2, 225 24 S 275 46, 300 24 S 350 6, 375 24 S 425 42, 450 24 S 500 12, 525 24 S 575 36, 600 24"/>
+      </svg>
 
-    <section>
-      <h2>About</h2>
-      <p>
-        Physics researcher focused on computational methods. Area Of Research: Physics-Informed Statistical Machine Learning For Nonlinear Processes & Complex Systems.
-<br>
-        .
-      </p>
-      <p>
-        Interests include physics simulations, numerical methods, inverse problems, fault mechanics, and anthropogenic seismicity.
-      </p>
-      <p>
-        This is my GitHub Pages site — more projects, publications, Jupyter notebooks, and research notes will be added soon.
-      </p>
-    </section>
+      <section>
+        <h2>About</h2>
+        <p>
+          Physics researcher focused on computational methods. Area Of Research: Physics-Informed Statistical Machine Learning For Nonlinear Processes &amp; Complex Systems.
+        </p>
+        <p>
+          Interests include physics simulations, numerical methods, inverse problems, fault mechanics, and anthropogenic seismicity.
+        </p>
+        <p>
+          This is my GitHub Pages site — more projects, publications, Jupyter notebooks, and research notes will be added soon.
+        </p>
+      </section>
 
-    <section>
-      <h2>Featured Work & Repositories</h2>
-      <p>
-        Explore my <a href="https://github.com/quantizedreza?tab=repositories" style="color:var(--accent); text-decoration:underline;">public repositories</a> — Jupyter notebooks and code covering:
-      </p>
-      <ul style="padding-left:1.8rem; margin:1rem 0;">
-        <li>Computational Physics With Python (On GitHub)</li>
-   
-      </ul>
+      <section>
+        <h2>Featured Work &amp; Repositories</h2>
+        <p>
+          Explore my <a href="https://github.com/quantizedreza?tab=repositories">public repositories</a> — Jupyter notebooks and code covering:
+        </p>
+        <ul class="plain">
+          <li>Computational Physics With Python (On GitHub)</li>
+        </ul>
 
-      <div style="background: var(--card); padding: 1.4rem; border-radius: 8px; border: 1px solid var(--border); margin: 1.5rem 0;">
-      <h3 style="margin-top: 0; font-size: 1.4rem; color: var(--accent);">Bayesian Parameter Estimation for Temperature-Dependent Young's Modulus in Aluminum</h3>
-      <p style="font-weight: 600; margin: 0.6rem 0 1rem;">
-      Building on: Rahemi, R., & Li, D. (2015). Variation in electron work function with temperature and its effect on the Young’s modulus of metals. <em>Scripta Materialia</em>, 99, 41–44.
-      <br><a href="https://doi.org/10.1016/j.scriptamat.2014.11.022" style="color: var(--accent);">DOI</a> |
-      <a href="https://arxiv.org/abs/1503.08250" style="color: var(--accent);">arXiv</a>
-      </p>
-      <p style="margin-bottom: 1rem; opacity: 0.9;">
-      This Jupyter notebook implements MCMC-based Bayesian inference to quantify uncertainty in model parameters for the temperature dependence of Young's modulus in aluminum (FCC structure). It extends the 2015 theoretical framework — where temperature reduces the electron work function φ(T) = φ₀ − γ (k_B T)² / φ₀, leading to softening of elastic stiffness (E ∝ φ⁶) — by fitting to experimental data with full posterior distributions, credible intervals, and diagnostics.
-      </p>
-      <p style="margin-bottom: 0.8rem;">
-      <strong>Key features:</strong>
-      </p>
-      <ul style="padding-left: 1.6rem; margin: 0.5rem 0 1rem;">
-      <li>Markov Chain Monte Carlo sampling for parameter estimation and uncertainty propagation</li>
-      <li>Application to aluminum: modeling thermal effects on interatomic bonding via work function</li>
-      <li>Visualizations: posterior distributions, trace plots, pair plots, model fits vs. data</li>
-      <li>Improves predictive capability for materials behavior at elevated temperatures</li>
-      </ul>
-      <a href="https://github.com/quantizedreza/Materials-Physics-With-Python/blob/e39aab14f3bd2d17be9510353b5611f90da3d893/aluminum_MCMC.ipynb" 
-       style="color: var(--accent); font-weight: 500; text-decoration: underline;" 
-       target="_blank" rel="noopener noreferrer">View / Run the Notebook →</a>
-      </div>
+        <article class="feature">
+          <h3>Bayesian Parameter Estimation for Temperature-Dependent Young's Modulus in Aluminum</h3>
+          <p class="cite">
+            Building on: Rahemi, R., &amp; Li, D. (2015). Variation in electron work function with temperature and its effect on the Young’s modulus of metals. <em>Scripta Materialia</em>, 99, 41–44.
+            <br><a href="https://doi.org/10.1016/j.scriptamat.2014.11.022">DOI</a> |
+            <a href="https://arxiv.org/abs/1503.08250">arXiv</a>
+          </p>
+          <p class="desc">
+            This Jupyter notebook implements MCMC-based Bayesian inference to quantify uncertainty in model parameters for the temperature dependence of Young's modulus in aluminum (FCC structure). It extends the 2015 theoretical framework — where temperature reduces the electron work function φ(T) = φ₀ − γ (k_B T)² / φ₀, leading to softening of elastic stiffness (E ∝ φ⁶) — by fitting to experimental data with full posterior distributions, credible intervals, and diagnostics.
+          </p>
+          <p><strong>Key features:</strong></p>
+          <ul>
+            <li>Markov Chain Monte Carlo sampling for parameter estimation and uncertainty propagation</li>
+            <li>Application to aluminum: modeling thermal effects on interatomic bonding via work function</li>
+            <li>Visualizations: posterior distributions, trace plots, pair plots, model fits vs. data</li>
+            <li>Improves predictive capability for materials behavior at elevated temperatures</li>
+          </ul>
+          <a href="https://github.com/quantizedreza/Materials-Physics-With-Python/blob/e39aab14f3bd2d17be9510353b5611f90da3d893/aluminum_MCMC.ipynb"
+             target="_blank" rel="noopener noreferrer">View / Run the Notebook →</a>
+        </article>
 
+        <p>More physics-based simulations on GitHub.</p>
+      </section>
 
-
-
-      
-      <p>More physics-based simulations on GitHub.</p>
-    </section>
-
-    <section>
-      <h2>Contact / Connect</h2>
-      <ul class="connect">
-        <li>📧 → Best reached via GitHub issues or academic email (see publications)</li>
-        <li>🐙 → <a href="https://github.com/quantizedreza" style="color:var(--accent)">github.com/quantizedreza</a></li>
-        <li>🌐 → Condensed Matter and Complex Systems: <a href="https://sites.psu.edu/reza" style="color:var(--accent)">sites.psu.edu/reza</a> </li>
-        <li>🌐 → Research Papers: <a href="https://scholar.google.ca/citations?user=8WjdW7IAAAAJ&hl" style="color:var(--accent)">Google Scholar</a> </li>
-      </ul>
-    </section>
-<img width="270" height="75" alt="UCSD-SIO_Hrizontal-Color_RGB" src="https://github.com/user-attachments/assets/0943ed2e-dbb7-4365-9d86-80344aa0e6e0" />
-
-
+      <section>
+        <h2>Contact / Connect</h2>
+        <ul class="connect">
+          <li><span aria-hidden="true">📧</span><span>Best reached via GitHub issues or academic email (see publications)</span></li>
+          <li><span aria-hidden="true">🐙</span><span><a href="https://github.com/quantizedreza">github.com/quantizedreza</a></span></li>
+          <li><span aria-hidden="true">🌐</span><span>Condensed Matter and Complex Systems: <a href="https://sites.psu.edu/reza">sites.psu.edu/reza</a></span></li>
+          <li><span aria-hidden="true">🌐</span><span>Research Papers: <a href="https://scholar.google.ca/citations?user=8WjdW7IAAAAJ&amp;hl">Google Scholar</a></span></li>
+        </ul>
+      </section>
+    </main>
   </div>
 
   <footer>
@@ -234,6 +267,4 @@
   </footer>
 
 </body>
-</body>
-
 </html>
